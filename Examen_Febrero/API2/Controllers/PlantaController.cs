@@ -22,7 +22,7 @@ namespace API2.Controllers
             try
             {
                 result.Value = DAL.Listados.clsListadoPlantaDAL.generarListadoPlantasDAL();
-                result.StatusCode = (int)HttpStatusCode.NotFound;
+                result.StatusCode = (int)HttpStatusCode.OK;
                 if ((result.Value as ObservableCollection<clsPlanta>) == null || (result.Value as ObservableCollection<clsPlanta>).Count == 0)
                 {
                     result.StatusCode = (int)HttpStatusCode.NotFound;
@@ -44,8 +44,24 @@ namespace API2.Controllers
 
         // POST api/<PlantaController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ObjectResult Post([FromBody] clsPlanta oPlanta)
         {
+            ObjectResult result = new ObjectResult(new { Value = 0 });
+
+            try
+            {
+                result.Value = DAL.Gestora.clsGestoraPlantaDAL.insertarPlantaDAL(oPlanta);
+                result.StatusCode = (int)HttpStatusCode.OK;
+                if ((result.Value as clsPlanta) == null || (((int)result.Value) == 0))
+                {
+                    result.StatusCode = (int)HttpStatusCode.NotFound;
+                }
+            }
+            catch (Exception)
+            {
+                result.StatusCode = (int)HttpStatusCode.InternalServerError;
+            }
+            return result;
         }
 
         // PUT api/<PlantaController>/5

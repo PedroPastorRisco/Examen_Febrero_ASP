@@ -6211,8 +6211,9 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\VSPC-EternalStormV2\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\ppastor\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
@@ -6220,16 +6221,18 @@
       "projectUniqueName": "D:\\GitHub\\Examen_Febrero_ASP\\Examen_Febrero\\API\\API.csproj",
       "projectName": "API",
       "projectPath": "D:\\GitHub\\Examen_Febrero_ASP\\Examen_Febrero\\API\\API.csproj",
-      "packagesPath": "C:\\Users\\VSPC-EternalStormV2\\.nuget\\packages\\",
+      "packagesPath": "C:\\Users\\ppastor\\.nuget\\packages\\",
       "outputPath": "D:\\GitHub\\Examen_Febrero_ASP\\Examen_Febrero\\API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\VSPC-EternalStormV2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ppastor\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
