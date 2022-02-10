@@ -59,7 +59,7 @@ namespace DAL.Gestora
                 {
                     miComando.Parameters.Add("@precio", System.Data.SqlDbType.Float).Value = System.DBNull.Value;
                 }
-                miComando.CommandText = "UPDATE Plantas SET precio = @precio WHERE idPlanta = @id";
+                miComando.CommandText = "UPDATE Plantas SET nombre = @nombre,precio = @precio WHERE idPlanta = @id";
                 miComando.Connection = conection;
                 resultado = miComando.ExecuteNonQuery();
                 conexion.closeConnection(ref conection);
@@ -129,6 +129,28 @@ namespace DAL.Gestora
             {
                 throw;
             }
+            return resultado;
+        }
+        /// <summary>
+        /// <cadecera>public static int deletePlantaDAL(int id)</cadecera>
+        /// <descripcion>Método para borrar una planta de la base de datos</descripcion>
+        /// <precondiciones>id distinto de 0 y positivo</precondiciones>
+        /// <postcondiciones>devuelve un entero con el número de filas afectadas</postcondiciones>
+        /// </summary>
+        /// <param name="id">int</param>
+        /// <returns>int</returns>
+        public static int deletePlantaDAL(int id)
+        {
+            int resultado = 0;
+            Conexion.conexionBDD miConexion = new Conexion.conexionBDD();
+            SqlConnection connection = miConexion.getConnection();
+            SqlCommand miComando = new SqlCommand();
+            miComando.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = id;
+            miComando.CommandText = "DELETE FROM plantas WHERE idPlanta = @id";
+            miComando.Connection = connection;
+            resultado = miComando.ExecuteNonQuery();
+
+            miConexion.closeConnection(ref connection);
             return resultado;
         }
     }

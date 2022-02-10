@@ -64,16 +64,52 @@ namespace API2.Controllers
             return result;
         }
 
-        // PUT api/<PlantaController>/5
+        // PUT api/<PlantasController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public ObjectResult Put(int id, [FromBody] clsPlanta planta)
         {
+            ObjectResult result = new ObjectResult(new { Value = planta });
+            try
+            {
+                planta.IDPlanta = id;
+                result.Value = DAL.Gestora.clsGestoraPlantaDAL.editarPrecioPlantaDAL(planta);
+                result.StatusCode = (int)HttpStatusCode.OK;
+                if (planta == null)
+                {
+                    result.StatusCode = (int)HttpStatusCode.NotFound;
+                }
+            }
+            catch (Exception)
+            {
+                result.Value = 0;
+                result.StatusCode = (int)HttpStatusCode.InternalServerError;
+            }
+
+            return result;
         }
 
-        // DELETE api/<PlantaController>/5
+        // DELETE api/<PlantasController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ObjectResult Delete(int id)
         {
+            ObjectResult result = new ObjectResult(new { });
+            result.Value = 0;
+            try
+            {
+                result.Value = DAL.Gestora.clsGestoraPlantaDAL.deletePlantaDAL(id);
+                result.StatusCode = (int)HttpStatusCode.OK;
+                if (id < 0)
+                {
+                    result.StatusCode = (int)HttpStatusCode.NotFound;
+                }
+            }
+            catch (Exception)
+            {
+                result.Value = 0;
+                result.StatusCode = (int)HttpStatusCode.InternalServerError;
+            }
+
+            return result;
         }
     }
 }

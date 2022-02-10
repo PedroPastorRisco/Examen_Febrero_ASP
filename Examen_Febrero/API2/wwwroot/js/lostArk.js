@@ -2,11 +2,10 @@
 function inicializaEventos() {
     rellenarTabla();
     document.getElementById("btnGuardar").addEventListener("click", insertarPlanta, false);
+    document.getElementById("btnEliminar").addEventListener("click", eliminarPlanta, false);
 }
 function insertarPlanta() {
-    alert("He entrado")
     var oPlanta = new clsPlanta();
-    alert("Huevo")
     oPlanta.nombre = document.getElementById("txtBName").value
     oPlanta.descripcion = document.getElementById("txtBDesc").value
     var miLlamada = new XMLHttpRequest();
@@ -14,10 +13,7 @@ function insertarPlanta() {
     miLlamada.open("POST", "http://localhost:63921/api/planta");
     miLlamada.setRequestHeader('Content-type', 'application/json; charset=utf-8');
     miLlamada.onreadystatechange = function () {
-        if (miLlamada.readyState != 4) {
-            alert(miLlamada.readyState);
-        }
-        else if (miLlamada.readyState == 4 && miLlamada.status == 200) {
+        if (miLlamada.readyState == 4 && miLlamada.status == 200) {
             alert(miLlamada.value)
         }
     }
@@ -61,6 +57,18 @@ function crearSelect(arrayPlantas) {
         option.innerHTML = arrayPlantas[i].nombre;
         document.getElementById("selectBorrar").appendChild(option);
     }
+}
+function eliminarPlanta() {
+    var id = document.getElementById("selectBorrar").value;
+    var miLlamada = new XMLHttpRequest();
+    miLlamada.open("DELETE", "http://localhost:63921/api/planta/" + id);
+    miLlamada.onreadystatechange = function () {
+        if (miLlamada.readyState == 4 && miLlamada.status == 200) {
+                alert("Creo que se ha borrado")
+        }
+    }
+    miLlamada.send();
+    location.reload();
 }
 function controlarErrores(int) {
     switch (int) {
