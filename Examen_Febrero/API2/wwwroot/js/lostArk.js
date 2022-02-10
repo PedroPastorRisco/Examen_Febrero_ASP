@@ -20,6 +20,7 @@ function insertarPlanta() {
     miLlamada.send(json)
 }
 function rellenarTabla() {
+    document.getElementById("charge").style.display = "block";
     var miLlamada = new XMLHttpRequest();
     miLlamada.open("GET", "http://localhost:63921/api/planta");
     miLlamada.onreadystatechange = function () {
@@ -49,6 +50,8 @@ function crearTabla(arrayPlantas) {
         fila.appendChild(columnaApellidos)
         document.getElementById("tablaPlantas").appendChild(fila)
     }
+    document.getElementById("charge").style.display = "none";
+    document.getElementById("tablaPlantas").style.display = "block";
 }
 function crearSelect(arrayPlantas) {
     for (var i = 0; i < arrayPlantas.length; i++) {
